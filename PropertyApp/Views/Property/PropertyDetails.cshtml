@@ -1,0 +1,25 @@
+﻿@{
+      Layout = null;
+} 
+
+<div class="row content-main">
+    <div class="col-md-6">
+        <div class="photo-gallery">
+            <div class="container">
+                <div class="row photos">
+                    <div  ng-repeat="image in $ctrl.property.ImagePaths" class="col-lg-6 col-md-6 col-sm-6">
+                        <a data-lightbox="photos" data-toggle="modal" data-target="#myModal"><img class="img-responsive details-image" src="{{ image }}" alt="Slide Image"></a>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1 style="font-weight: bold">{{$ctrl.property.Title}}</h1>
+        <h3>{{$ctrl.property.Address}}</h3>
+        <h3>{{$ctrl.property.Country}} </h3>
+        <h4 style="font-style: italic; display:inline-block"><p style="font-weight: bold;display:inline-block">Landlord:</p> {{$ctrl.property.Landlord}}</h4>
+        <h5>{{$ctrl.property.Description}}</h5>
+        <button  id="btnSave" class="form-control btn-danger form-button" ng-click="Delete()">Delete Property</button>
+    </div>
+</div>

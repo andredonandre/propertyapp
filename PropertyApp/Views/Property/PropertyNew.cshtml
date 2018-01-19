@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+<div class="content-main">
+    <h1>New Property</h1>
+    <div class="form-group" enctype="multipart/form-data">
+        <div class="form-group form-inline">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control input-field" id="title" placeholder="Title" ng-model="Title" required>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control input-field" id="address" placeholder="Address" ng-model="Address" required>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control input-field" id="country" placeholder="Country" ng-model="Country" required>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="landlord" class="form-label">Landlord</label>
+            <input type="text" class="form-control input-field" id="landlord" placeholder="Landlord" ng-model="LandlordName" required>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="description" class="form-label">Description</label>
+            <textarea rows="3" type="text" class="form-control input-field" id="description" placeholder="Description" ng-model="Description"required/>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="ImageIn" class="form-label">Add Images</label>
+            <input name="ImageIn" id="ImageIn" type="file" accept="image/*" onchange="angular.element(this).scope().SelectImage(this)" /><span>{{selected}}</span>
+            <p>{{selectedFiles}} files selected</p>
+        </div>
+            <div class="row">
+                <div class="col-md-2" ng-repeat="image in Urls">
+                    <img src="{{ image }}" style="width:150px; height:150px" />
+                </div>
+            </div>        
+
+            <input type="submit" id="btnSave" class="form-control btn-success form-button" value="Submit" ng-click="SaveProperty()" />
+
+        </div>
+</div>
