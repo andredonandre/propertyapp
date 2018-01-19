@@ -35,7 +35,7 @@
             <p>{{selectedFiles}} files selected</p>
         </div>
             <div class="row">
-                <div class="col-md-2" ng-repeat="image in Urls">
+                <div class="col-md-2" ng-repeat="image in Urls track by $index">
                     <img src="{{ image }}" style="width:150px; height:150px" />
                 </div>
             </div>        
