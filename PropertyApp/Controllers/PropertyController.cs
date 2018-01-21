@@ -30,6 +30,12 @@ namespace PropertyApp.Controllers
            return View();
         }
 
+        public ActionResult Image(string ext)
+        {
+            var f = Server.MapPath(ext);
+            return File(f, "image/jpg");
+        }
+
         public JsonResult Properties()
         {
             try
@@ -39,7 +45,8 @@ namespace PropertyApp.Controllers
 
                 foreach (var p in properties)
                 {
-                    p.ImagePaths = Directory.GetFiles(Server.MapPath("~/PropertyImages/" + p.id + "/"));
+                    var images = Directory.GetFiles(Server.MapPath("~/PropertyImages/" + p.id + "/"));
+                    p.ImagePaths = validateUrls(images, p.id.ToString());                   
                 }
                 JsonResult result = new JsonResult
                 {
@@ -62,8 +69,9 @@ namespace PropertyApp.Controllers
                 var db = DataContext.GetContext();
                 var property = db.Properties.Where(p => p.id.ToString() == id).FirstOrDefault();
 
-                property.ImagePaths = Directory.GetFiles(Server.MapPath("~/PropertyImages/" + property.id + "/"));
-
+                var images = Directory.GetFiles(Server.MapPath("~/PropertyImages/" + property.id + "/"));
+                property.ImagePaths = validateUrls(images, property.id.ToString());
+                
                 JsonResult result = new JsonResult
                 {
                     Data = property,
@@ -123,5 +131,17 @@ namespace PropertyApp.Controllers
                 throw;
             }
         }
+
+        private string[] validateUrls(string[] paths, string id) {
+            var pathlist = paths.ToList();
+            List<string> serverPaths = new List<string>();
+            foreach (var p in pathlist) {
+                var url = "~/PropertyImages/" + id +"/"+ Path.GetFileName(p);
+                serverPaths.Add(url);
+            }
+            return serverPaths.ToArray();
+        }
+
+
     }
 }

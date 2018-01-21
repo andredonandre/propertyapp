@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Web;
+@{
       Layout = null;
 }
 
@@ -18,7 +19,7 @@
             <div class="row">
                 <div ng-repeat="prop in $ctrl.properties | filter:$ctrl.query | orderBy:$ctrl.orderProp">
                     <a href="#!/{{prop.id}}" class=" col-md-3 col-sm-3 col-xs-4 property-box">
-                        <img src="{{prop.ImagePaths[0]}}" class="property-image">
+                        <img src="~/Property/Image?ext={{prop.ImagePaths[0]}}" class="property-image">
                         <h3>{{prop.Title}}</h3>
                         <h5>{{prop.Address}}</h5>
                         <h5>{{prop.Country}}</h5>
